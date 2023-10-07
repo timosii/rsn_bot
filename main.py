@@ -1,10 +1,10 @@
-import requests
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, exceptions
 from aiogram.filters import Command, CommandStart
 from aiogram.types import Message
-from bs4 import BeautifulSoup as BS
 
 from config import settings
+from formatter import HELP_TEXT
+from general import send_post, send_rsn_post, send_sean_post, when_update
 
 BOT_TOKEN = settings.BOT_TOKEN
 MY_ID = settings.MY_ID
@@ -14,40 +14,71 @@ bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
 
 
-def form_response():
-    headers = {
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-        "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/117.0"
-    } 
-    url = "https://www.infinitestudio.art/posts.php?discussion=2"
-    response = requests.get(url, headers=headers) 
-    soup = BS(response.text, "lxml")
-    result = soup.find_all("div", 'posts')
-    return result
-
-
-
-
 @dp.message(CommandStart())
 async def process_start_command(message: Message):
-    print(form_response())
-    # await bot.send_message(MY_ID, form_response())
-    # await message.answer(text="Привет, брат! Брат моего брата - мой брат")
+    await message.answer(
+        text=
+        "Выбери команду:\n/last_post\n/sean\n/ruslan\n/when_update"
+    )
 
 
 @dp.message(Command(commands="help"))
 async def process_help_command(message: Message):
-    form_message = f"Username: {message.from_user.username}\nid: {message.from_user.id}\nБот: {'Да' if message.from_user.is_bot else 'Нет'}\nИмя: {message.from_user.first_name}\nФамилия: {message.from_user.last_name}"
-    await bot.send_message(MY_ID, form_message)
-    await message.answer(text="Отправляю сообщения пользователя Sean Brakefield c форума infinite_studio.art. Нахожусь в разработке")
+    await message.answer(
+        text=HELP_TEXT
+    )
+
+
+@dp.message(Command(commands="last_post"))
+async def process_last_command(message: Message):
+    reply = send_post()
+    await message.answer(text=reply, parse_mode="HTML")
+
+
+@dp.message(Command(commands="sean"))
+async def process_three_command(message: Message):
+    try:
+        reply = send_sean_post()
+        await message.answer(text=reply, parse_mode="HTML")
+    except exceptions.TelegramBadRequest:
+        try:
+            reply = send_sean_post(length_replies=4)
+            await message.answer(text=reply, parse_mode="HTML")
+        except exceptions.TelegramBadRequest:
+            try:
+                reply = send_sean_post(length_replies=3)
+                await message.answer(text=reply, parse_mode="HTML")
+            except exceptions.TelegramBadRequest:
+                raise
+
+
+@dp.message(Command(commands="ruslan"))
+async def process_three_RSN_command(message: Message):
+    try:
+        reply = send_rsn_post()
+        await message.answer(text=reply, parse_mode="HTML")
+    except exceptions.TelegramBadRequest:
+        try:
+            reply = send_rsn_post(length_replies=4)
+            await message.answer(text=reply, parse_mode="HTML")
+        except exceptions.TelegramBadRequest:
+            try:
+                reply = send_rsn_post(length_replies=3)
+                await message.answer(text=reply, parse_mode="HTML")
+            except exceptions.TelegramBadRequest:
+                raise
+            
+
+@dp.message(Command(commands='when_update'))
+async def process_update(message: Message):
+    reply = when_update()
+    await message.answer(text=reply, parse_mode="HTML")
 
 
 @dp.message()
-async def process_day_command(message: Message):
-    form_message = f"Username: {message.from_user.username}\nid: {message.from_user.id}\nБот: {'Да' if message.from_user.is_bot else 'Нет'}\nИмя: {message.from_user.first_name}\nФамилия: {message.from_user.last_name}"
-    await bot.send_message(MY_ID, form_message)
-    await message.answer(text="Пока не умею ничего. Разрабатываюсь")
-
+async def process__all_answer(message: Message):
+    await message.answer(text="Для помощи нажми:\n/help", parse_mode="HTML")
+    
 
 if __name__ == '__main__':
     dp.run_polling(bot)

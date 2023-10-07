@@ -10,6 +10,9 @@ aiogram = "^3.1.1"
 bs4 = "^0.0.1"
 requests = "^2.31.0"
 lxml = "^4.9.3"
+logic-toolchain = "^0.0.2"
+html5lib = "^1.1"
+fake-headers = "^1.0.2"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md
@@ -19,7 +22,7 @@ exclude = [".cache"]
 [tool.ruff]
 # https://beta.ruff.rs/docs/configuration/
 select = ['E', 'W', 'F', 'I', 'B', 'C4', 'ARG', 'SIM']
-ignore = ['W291', 'W292', 'W293', 'E501']
+ignore = ['W291', 'W292', 'W293', 'E501', 'E402'] # E402 - ошибка, что импорт в топе файла
 line-length = 120
 
 [build-system]
