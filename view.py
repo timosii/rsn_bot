@@ -10,12 +10,16 @@ def form_post(post: Post) -> str:
     return f"📩 <u><b>Post</b></u>:\n<i>{user}</i>\n\n<u>{title}</u>\n\n{content}\n\n✅ <b>Replies</b>:\n\n"
         
 
-def form_replies(reply: Reply) -> str:
+def form_reply(reply: Reply) -> str:
     user = reply.user
     content = reply.content
     res = f"👉<i>{user}</i>:\n{content}\n\n" if user else "<i>There is no replies ...</i>\n\n"
     return res
 
-def take_update(reply: Reply) -> str:
+def take_update_time_reply(reply: Reply) -> str:
     update = reply.update_time
+    return f"⌛ The update was <b>{update}</b> ago"
+
+def take_update_time_post(post: Post) -> str:
+    update = post.update_time
     return f"⌛ The update was <b>{update}</b> ago"

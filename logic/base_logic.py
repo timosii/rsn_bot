@@ -3,9 +3,9 @@ from dataclasses import dataclass
 import requests
 from bs4 import BeautifulSoup
 
-from formatter import form_post, form_replies
 from logic.post_logic import current_post
 from logic.reply_logic import replies_post
+from view import form_post, form_reply
 
 from .login import headers, session
 
@@ -64,13 +64,16 @@ def all_posts(session: requests.Session = session) -> list[PostsList]:
 
 
 def post_and_replies(post_id: str, length=5):
+    '''
+    Получает post_id, возвращает пост и его реплаи - уже строкой
+    '''
     post = current_post(post_id=post_id)
     replies = replies_post(post_id=post_id)
     res = form_post(post)
     if len(replies) > length:
         replies = replies[-length:]
     for reply in replies:
-        res += form_replies(reply)
+        res += form_reply(reply)
     return res
     
     

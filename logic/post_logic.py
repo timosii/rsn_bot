@@ -15,6 +15,7 @@ class Post:
     user: str
     title: str
     content: str
+    update_time: str
     
 
 def current_post(post_id: str,                 
@@ -34,7 +35,9 @@ def current_post(post_id: str,
         soup_html = BeautifulSoup(html, 'lxml')
         user_name_element = soup_html.find('h5', class_='notranslate')
         user_name = user_name_element.text if user_name_element else "Неизвестный юзер"
-        result = Post(id=post_id, user=user_name, title=title, content=content_text)
+        update_time_element = soup_html.find('p', class_="card-subtext notranslate") 
+        update_time = update_time_element.text if update_time_element else "Время обновления неизвестно"        
+        result = Post(id=post_id, user=user_name, title=title, content=content_text, update_time=update_time)
         return result
 
     else:
