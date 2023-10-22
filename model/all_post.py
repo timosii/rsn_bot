@@ -1,13 +1,9 @@
 from dataclasses import dataclass
+from model.connection import headers, login_process, session
+
 
 import requests
 from bs4 import BeautifulSoup
-
-from logic.post_logic import current_post
-from logic.reply_logic import replies_post
-from view import form_post, form_reply
-
-from .login import headers, session
 
 
 @dataclass
@@ -22,13 +18,15 @@ class Authors:
     Sean: str = '06342536'
     Ruslan: str = '85149428'
 
+
 # все посты -- собираем инфу
-def all_posts(session: requests.Session = session) -> list[PostsList]:
+def take_post_list(session: requests.Session = session) -> list[PostsList]:
     posts_metadata = []
+    login_process()
     target_url_posts = "https://www.infinitestudio.art/scripts/fetch_posts.php"
     data_posts = {
-        "limit": 24, 
-        "start": 0, 
+        "limit": 24,
+        "start": 0,
         "discussion": -1
     }
 
@@ -61,21 +59,8 @@ def all_posts(session: requests.Session = session) -> list[PostsList]:
         print(
             f"Ошибка запроса списка всех постов: {response_posts.status_code}")
         raise Exception("Не удалось получить список всех постов")
+    
 
-
-def post_and_replies(post_id: str, length=5):
-    '''
-    Получает post_id, возвращает пост и его реплаи - уже строкой
-    '''
-    post = current_post(post_id=post_id)
-    replies = replies_post(post_id=post_id)
-    res = form_post(post)
-    if length:
-        if len(replies) > length:
-            replies = replies[-length:]
-        for reply in replies:
-            res += form_reply(reply)
-    return res
     
     
         
