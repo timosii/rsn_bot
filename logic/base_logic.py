@@ -70,10 +70,11 @@ def post_and_replies(post_id: str, length=5):
     post = current_post(post_id=post_id)
     replies = replies_post(post_id=post_id)
     res = form_post(post)
-    if len(replies) > length:
-        replies = replies[-length:]
-    for reply in replies:
-        res += form_reply(reply)
+    if length:
+        if len(replies) > length:
+            replies = replies[-length:]
+        for reply in replies:
+            res += form_reply(reply)
     return res
     
     

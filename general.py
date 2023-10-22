@@ -13,7 +13,7 @@ def take_post_list() -> list[PostsList]:
     return post_list
 
 
-def send_post(seq_length=1, time_wait=1) -> str:
+def send_post(seq_length=1, time_wait=1, length_replies=5) -> str:
     '''
     Функция возвращает seq_number постов с реплаями (с конца)
     '''
@@ -21,7 +21,7 @@ def send_post(seq_length=1, time_wait=1) -> str:
     res_post = ''
 
     for post in post_list[:seq_length]:
-        res_post += post_and_replies(post.id)
+        res_post += post_and_replies(post.id, length=length_replies)
         time.sleep(time_wait)
         res_post += '---------------------------\n\n'
     print("Пост отправлен")
