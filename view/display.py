@@ -1,5 +1,4 @@
-from model.post_reply import Post
-from model.post_reply import Reply
+from model.post_reply import Post, Reply
 
 
 def html_fix(text: str) -> str:
@@ -37,5 +36,3 @@ def take_update_time_reply(reply: Reply) -> str:
 def take_update_time_post(post: Post) -> str:
     update = post.update_time
     return f"⌛ The update was <b>{update}</b> ago"
-
-

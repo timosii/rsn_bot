@@ -9,7 +9,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from background import keep_alive
 from config import settings
 from controller.general import send_post, send_rsn_post, send_sean_post, when_update
-from controller.schedule_tasks import last_sean_post_id, last_rsn_post_id, change_ids, read_ids, control_rus_replies
+from controller.schedule_tasks import change_ids, control_rus_replies, last_sean_post_id, read_ids
 from view.data import HELP_TEXT, REPLY_TEXT
 
 BOT_TOKEN = settings.BOT_TOKEN
@@ -25,35 +25,37 @@ scheduler = AsyncIOScheduler(timezone="Europe/Moscow")
 def set_scheduler_tasks(bot):
     scheduler.add_job(check_posts, 'interval',
                       next_run_time=datetime.now(),
-                      seconds=5, args=(bot,))
+                      seconds=7200, args=(bot,))
   
 
 async def check_posts(bot: Bot):
     update_sean = last_sean_post_id()
-    update_rus = last_rsn_post_id()
     update_len = control_rus_replies()
     print(update_len)
     current_sean = read_ids()["Sean"]
-    current_rus = read_ids()["Rus"]
     current_len = read_ids()["Len"]
     print(current_len)
         
     if update_sean and (update_sean != current_sean):
-        await bot.send_message(MY_ID, 'Новый пост от Шона!')
+        await bot.send_message(RSN_ID, 'Новый пост от Шона!')
         sean_message = send_sean_post(length_replies=5)
+        await bot.send_message(RSN_ID, sean_message, parse_mode="HTML")
+        await bot.send_message(MY_ID, 'Новый пост от Шона!')
         await bot.send_message(MY_ID, sean_message, parse_mode="HTML")
     else:
         await bot.send_message(MY_ID, text="Работаю, нового поста от Шона нет", parse_mode="HTML")
 
 
     if update_len != current_len and update_len != '0':
-        await bot.send_message(MY_ID, 'Обновление в посте Руса!')
+        await bot.send_message(RSN_ID, 'Обновление в твоём посте!')
         rus_message = send_rsn_post(length_replies=5)
+        await bot.send_message(RSN_ID, rus_message, parse_mode="HTML")
+        await bot.send_message(MY_ID, 'Обновление в твоём посте!')
         await bot.send_message(MY_ID, rus_message, parse_mode="HTML")
     else:
         await bot.send_message(MY_ID, text="Работаю, обновлений в постах Руса нет", parse_mode="HTML")
 
-    change_ids(update_rus, update_sean, update_len)
+    change_ids(update_sean, update_len)
        
 
 @dp.message(CommandStart())
@@ -117,6 +119,6 @@ async def main():
         await bot.session.close()
 
 
-# keep_alive()
+keep_alive()
 if __name__ == '__main__':
     asyncio.run(main())

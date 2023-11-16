@@ -1,6 +1,6 @@
 from controller.general import take_post_list
-from model.post_reply import replies_post
 from model.all_post import Authors
+from model.post_reply import replies_post
 
 
 def last_sean_post_id():
@@ -31,9 +31,9 @@ def control_rus_replies():
         return str(len_replies)
         
 
-def change_ids(rsn_post_id, sean_post_id, len_rus_replies):
+def change_ids(sean_post_id, len_rus_replies):
     with open("ids.txt", 'w', encoding='utf-8') as file:
-        file.write(f"rsn:{rsn_post_id} sean:{sean_post_id} len:{len_rus_replies}")
+        file.write(f"sean:{sean_post_id} len:{len_rus_replies}")
 
 
 def read_ids():
@@ -41,9 +41,8 @@ def read_ids():
         res = file.readlines()
     res = res[0].split()
     out = {}
-    out["Rus"] = res[0].split(":")[-1]
-    out["Sean"] = res[1].split(":")[-1]
-    out["Len"] = res[2].split(":")[-1]
+    out["Sean"] = res[0].split(":")[-1]
+    out["Len"] = res[1].split(":")[-1]
     return out
 
 
