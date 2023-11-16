@@ -9,7 +9,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from background import keep_alive
 from config import settings
 from controller.general import send_post, send_rsn_post, send_sean_post, when_update
-from controller.schedule_tasks import last_sean_post_id, last_rsn_post_id, change_ids, read_ids
+from controller.schedule_tasks import last_sean_post_id, last_rsn_post_id, change_ids, read_ids, control_rus_replies
 from view.data import HELP_TEXT, REPLY_TEXT
 
 BOT_TOKEN = settings.BOT_TOKEN
@@ -31,25 +31,29 @@ def set_scheduler_tasks(bot):
 async def check_posts(bot: Bot):
     update_sean = last_sean_post_id()
     update_rus = last_rsn_post_id()
+    update_len = control_rus_replies()
+    print(update_len)
     current_sean = read_ids()["Sean"]
     current_rus = read_ids()["Rus"]
+    current_len = read_ids()["Len"]
+    print(current_len)
         
     if update_sean and (update_sean != current_sean):
         await bot.send_message(MY_ID, 'Новый пост от Шона!')
-        sean_message = send_sean_post()
+        sean_message = send_sean_post(length_replies=5)
         await bot.send_message(MY_ID, sean_message, parse_mode="HTML")
     else:
         await bot.send_message(MY_ID, text="Работаю, нового поста от Шона нет", parse_mode="HTML")
 
 
-    if update_rus and (update_rus != current_rus):
-        await bot.send_message(MY_ID, 'Новый пост от Руса!')
-        rus_message = send_rsn_post()
+    if update_len != current_len and update_len != '0':
+        await bot.send_message(MY_ID, 'Обновление в посте Руса!')
+        rus_message = send_rsn_post(length_replies=5)
         await bot.send_message(MY_ID, rus_message, parse_mode="HTML")
     else:
-        await bot.send_message(MY_ID, text="Работаю, нового поста от Руса нет", parse_mode="HTML")
+        await bot.send_message(MY_ID, text="Работаю, обновлений в постах Руса нет", parse_mode="HTML")
 
-    change_ids(update_rus, update_sean)
+    change_ids(update_rus, update_sean, update_len)
        
 
 @dp.message(CommandStart())
@@ -65,36 +69,18 @@ async def process_help_command(message: Message):
 
 @dp.message(Command(commands="last_post"))
 async def process_last_command(message: Message):
-    length_replies = 5
-    while True:
-        try:
-            reply = send_post(length_replies=length_replies)
-            await message.answer(text=reply, parse_mode="HTML")
-            break
-        except exceptions.TelegramBadRequest:
-            length_replies -= 1
-            if length_replies == 0:
-                reply = REPLY_TEXT
-                await message.answer(text=reply, parse_mode="HTML")
-                break
+    try:
+        reply = send_post(length_replies=5)
+        await message.answer(text=reply, parse_mode="HTML")
+    except exceptions.TelegramBadRequest:
+        reply = REPLY_TEXT
+        await message.answer(text=reply, parse_mode="HTML")  
 
 
 @dp.message(Command(commands="sean"))
 async def last_sean_post(message: Message):
-    # length_replies = 5
-    # while True:
-    #     try:
-    #         reply = send_sean_post(length_replies=length_replies)
-    #         await message.answer(text=reply, parse_mode="HTML")
-    #         break
-    #     except exceptions.TelegramBadRequest:
-    #         length_replies -= 1
-    #         if length_replies == 0:
-    #             reply = REPLY_TEXT
-    #             await message.answer(text=reply, parse_mode="HTML")
-    #             break
     try:
-        reply = send_sean_post(5)
+        reply = send_sean_post(length_replies=5)
         await message.answer(text=reply, parse_mode="HTML")
     except exceptions.TelegramBadRequest:
         reply = REPLY_TEXT
@@ -103,18 +89,12 @@ async def last_sean_post(message: Message):
 
 @dp.message(Command(commands="ruslan"))
 async def last_rsn_post(message: Message):
-    length_replies = 5
-    while True:
-        try:
-            reply = send_rsn_post(length_replies=length_replies)
-            await message.answer(text=reply, parse_mode="HTML")
-            break
-        except exceptions.TelegramBadRequest:
-            length_replies -= 1
-            if length_replies == 0:
-                reply = REPLY_TEXT
-                await message.answer(text=reply, parse_mode="HTML")
-                break
+    try:
+        reply = send_rsn_post(length_replies=5)
+        await message.answer(text=reply, parse_mode="HTML")
+    except exceptions.TelegramBadRequest:
+        reply = REPLY_TEXT
+        await message.answer(text=reply, parse_mode="HTML")  
 
 
 @dp.message(Command(commands='when_update'))
@@ -129,9 +109,9 @@ async def process_all_answer(message: Message):
 
 
 async def main():
-    # set_scheduler_tasks(bot)
+    set_scheduler_tasks(bot)
     try:
-        # scheduler.start()
+        scheduler.start()
         await dp.start_polling(bot)
     finally:
         await bot.session.close()

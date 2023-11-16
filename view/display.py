@@ -2,16 +2,20 @@ from model.post_reply import Post
 from model.post_reply import Reply
 
 
+def html_fix(text: str) -> str:
+    return text.replace('&', '&amp;').replace('>', '&gt;').replace('<', '&lt;')
+
+
 def form_post(post: Post) -> str:
-    user = post.user
-    content = post.content
-    title = post.title
+    user = html_fix(post.user)
+    content = html_fix(post.content)
+    title = html_fix(post.title)
     return f"📩 <u><b>Post</b></u>:\n<i>{user}</i>\n\n<u>{title}</u>\n\n{content}\n\n✅ <b>Replies</b>:\n\n"
         
 
 def form_reply(reply: Reply) -> str:
-    user = reply.user
-    content = reply.content
+    user = html_fix(reply.user)
+    content = html_fix(reply.content)
     res = f"👉<i>{user}</i>:\n{content}\n\n" if user else "<i>There is no replies ...</i>\n\n"
     return res
 

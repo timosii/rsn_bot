@@ -4,12 +4,13 @@ from model.all_post import Authors
 from model.post_reply import current_post, replies_post
 from view.display import take_update_time_post, take_update_time_reply, post_and_replies
 from model.all_post import take_post_list
-from controller.schedule_tasks import length_control
+from controller.schedule_tasks import length_replies_control
 
 
+@length_replies_control
 def send_post(posts_count=1, time_wait=1, length_replies=5) -> str:
     '''
-    Функция возвращает seq_number постов с реплаями
+    Функция возвращает posts_count постов с реплаями
     '''
     post_list = take_post_list()
     res_post = ''
@@ -22,8 +23,8 @@ def send_post(posts_count=1, time_wait=1, length_replies=5) -> str:
     return res_post
 
 
-@length_control
-def send_sean_post(length_replies, posts_count=1, time_wait=1):
+@length_replies_control
+def send_sean_post(posts_count=1, time_wait=1, length_replies=5):
     '''
     Отправка постов Шона
     '''
@@ -44,6 +45,7 @@ def send_sean_post(length_replies, posts_count=1, time_wait=1):
     return res
 
 
+@length_replies_control
 def send_rsn_post(posts_count=1, time_wait=1, length_replies=5):
     '''
     Отправка последних постов пользователя Ruslan, либо тех, где он отвечал
