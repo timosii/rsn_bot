@@ -81,18 +81,24 @@ async def process_last_command(message: Message):
 
 @dp.message(Command(commands="sean"))
 async def last_sean_post(message: Message):
-    length_replies = 5
-    while True:
-        try:
-            reply = send_sean_post(length_replies=length_replies)
-            await message.answer(text=reply, parse_mode="HTML")
-            break
-        except exceptions.TelegramBadRequest:
-            length_replies -= 1
-            if length_replies == 0:
-                reply = REPLY_TEXT
-                await message.answer(text=reply, parse_mode="HTML")
-                break
+    # length_replies = 5
+    # while True:
+    #     try:
+    #         reply = send_sean_post(length_replies=length_replies)
+    #         await message.answer(text=reply, parse_mode="HTML")
+    #         break
+    #     except exceptions.TelegramBadRequest:
+    #         length_replies -= 1
+    #         if length_replies == 0:
+    #             reply = REPLY_TEXT
+    #             await message.answer(text=reply, parse_mode="HTML")
+    #             break
+    try:
+        reply = send_sean_post(5)
+        await message.answer(text=reply, parse_mode="HTML")
+    except exceptions.TelegramBadRequest:
+        reply = REPLY_TEXT
+        await message.answer(text=reply, parse_mode="HTML")   
 
 
 @dp.message(Command(commands="ruslan"))
@@ -123,9 +129,9 @@ async def process_all_answer(message: Message):
 
 
 async def main():
-    set_scheduler_tasks(bot)
+    # set_scheduler_tasks(bot)
     try:
-        scheduler.start()
+        # scheduler.start()
         await dp.start_polling(bot)
     finally:
         await bot.session.close()

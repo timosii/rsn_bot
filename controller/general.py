@@ -4,6 +4,7 @@ from model.all_post import Authors
 from model.post_reply import current_post, replies_post
 from view.display import take_update_time_post, take_update_time_reply, post_and_replies
 from model.all_post import take_post_list
+from controller.schedule_tasks import length_control
 
 
 def send_post(posts_count=1, time_wait=1, length_replies=5) -> str:
@@ -21,7 +22,8 @@ def send_post(posts_count=1, time_wait=1, length_replies=5) -> str:
     return res_post
 
 
-def send_sean_post(posts_count=1, time_wait=1, length_replies=5):
+@length_control
+def send_sean_post(length_replies, posts_count=1, time_wait=1):
     '''
     Отправка постов Шона
     '''
@@ -88,13 +90,4 @@ def when_update():
     last_reply = post_replies[-1]
     res = take_update_time_reply(last_reply) if last_reply.update_time else take_update_time_post(last_post)
     return res
-
-
-
-
-    
-
-    
-
-        
-            
+         
