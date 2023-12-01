@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-from model.connection import headers, login_process, session
-
 
 import requests
 from bs4 import BeautifulSoup
+
+from model.connection import headers, login_process, session
 
 
 @dataclass
@@ -58,9 +58,5 @@ def take_post_list(session: requests.Session = session) -> list[PostsList]:
     else:
         print(
             f"Ошибка запроса списка всех постов: {response_posts.status_code}")
-        raise Exception("Не удалось получить список всех постов")
+        raise Exception("Не удалось получить список всех постов")  
     
-
-    
-    
-        

@@ -1,5 +1,6 @@
 from controller.general import take_post_list
 from model.all_post import Authors
+from model.database import change_len, change_sean, take_data
 from model.post_reply import replies_post
 
 
@@ -8,7 +9,15 @@ def last_sean_post_id():
     for post in post_list:
         if post.author == Authors.Sean:
             return post.id
-        
+
+
+def check_new_sean_post() -> int:
+    '''Функция возвращает максимальный пост -- то есть самый свежий
+    '''
+    post_list = take_post_list()
+    sean_id_list = [int(post.id) for post in post_list if post.author == Authors.Sean]
+    return max(sean_id_list)
+    
     
 def last_rsn_post_id():
     post_list = take_post_list()
@@ -28,34 +37,17 @@ def control_rus_replies():
         replies_rsn = replies_post(rsn_post)
         replies_without_rsn = [reply for reply in replies_rsn if reply.user != Authors.Ruslan]
         len_replies = len(replies_without_rsn)
-        return str(len_replies)
+        return len_replies
         
 
 def change_ids(sean_post_id, len_rus_replies):
-    with open("ids.txt", 'w', encoding='utf-8') as file:
-        file.write(f"sean:{sean_post_id} len:{len_rus_replies}")
+    change_sean(sean_post_id)
+    change_len(len_rus_replies)
 
 
 def read_ids():
-    with open("ids.txt", encoding='utf-8') as file:
-        res = file.readlines()
-    res = res[0].split()
     out = {}
-    out["Sean"] = res[0].split(":")[-1]
-    out["Len"] = res[1].split(":")[-1]
+    sean, len_rus = take_data()
+    out["Sean"] = sean
+    out["Len"] = len_rus
     return out
-
-
-def length_replies_control(func):
-    def out(*args, **kwargs):
-        n = kwargs['length_replies']
-        while n > 0:
-            try:
-                res = func(*args, **kwargs)
-                return res
-            except Exception:
-                n -= 1
-        return res
-    return out
-
-

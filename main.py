@@ -9,7 +9,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from background import keep_alive
 from config import settings
 from controller.general import send_post, send_rsn_post, send_sean_post, when_update
-from controller.schedule_tasks import change_ids, control_rus_replies, last_sean_post_id, read_ids
+from controller.schedule_tasks import change_ids, check_new_sean_post, control_rus_replies, read_ids
 from view.data import HELP_TEXT, REPLY_TEXT
 
 BOT_TOKEN = settings.BOT_TOKEN
@@ -29,29 +29,33 @@ def set_scheduler_tasks(bot):
   
 
 async def check_posts(bot: Bot):
-    update_sean = last_sean_post_id()
+    update_sean = check_new_sean_post()
     update_len = control_rus_replies()
-    print(update_len)
     current_sean = read_ids()["Sean"]
     current_len = read_ids()["Len"]
-    print(current_len)
         
-    if update_sean and (update_sean != current_sean):
+    if update_sean and (update_sean > current_sean):
         await bot.send_message(RSN_ID, 'Новый пост от Шона!')
         sean_message = send_sean_post(length_replies=5)
         await bot.send_message(RSN_ID, sean_message, parse_mode="HTML")
         await bot.send_message(MY_ID, 'Новый пост от Шона!')
-        await bot.send_message(MY_ID, sean_message, parse_mode="HTML")
+        try:
+            await bot.send_message(MY_ID, sean_message, parse_mode="HTML")
+        except exceptions.TelegramBadRequest:
+            await bot.send_message(MY_ID, REPLY_TEXT, parse_mode="HTML")
     else:
         await bot.send_message(MY_ID, text="Работаю, нового поста от Шона нет", parse_mode="HTML")
+   
 
-
-    if update_len != current_len and update_len != '0':
+    if update_len != current_len and update_len != 0:
         await bot.send_message(RSN_ID, 'Обновление в твоём посте!')
         rus_message = send_rsn_post(length_replies=5)
         await bot.send_message(RSN_ID, rus_message, parse_mode="HTML")
         await bot.send_message(MY_ID, 'Обновление в твоём посте!')
-        await bot.send_message(MY_ID, rus_message, parse_mode="HTML")
+        try:
+            await bot.send_message(MY_ID, rus_message, parse_mode="HTML")
+        except exceptions.TelegramBadRequest:
+            await bot.send_message(MY_ID, REPLY_TEXT, parse_mode="HTML")
     else:
         await bot.send_message(MY_ID, text="Работаю, обновлений в постах Руса нет", parse_mode="HTML")
 
@@ -108,7 +112,7 @@ async def process_update(message: Message):
 @dp.message()
 async def process_all_answer(message: Message):
     await message.answer(text="Для помощи нажми:\n/help", parse_mode="HTML")
-
+    
 
 async def main():
     set_scheduler_tasks(bot)
