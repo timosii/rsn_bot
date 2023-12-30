@@ -25,7 +25,7 @@ scheduler = AsyncIOScheduler(timezone="Europe/Moscow")
 def set_scheduler_tasks(bot):
     scheduler.add_job(check_posts, 'interval',
                       next_run_time=datetime.now(),
-                      seconds=7200, args=(bot,))
+                      seconds=3600, args=(bot,))
   
 
 async def check_posts(bot: Bot):
