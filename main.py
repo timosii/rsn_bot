@@ -6,7 +6,6 @@ from aiogram.filters import Command, CommandStart
 from aiogram.types import Message
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-from background import keep_alive
 from config import settings
 from controller.general import send_post, send_rsn_post, send_sean_post, when_update
 from controller.schedule_tasks import change_ids, check_new_sean_post, control_rus_replies, read_ids
@@ -123,6 +122,5 @@ async def main():
         await bot.session.close()
 
 
-keep_alive()
 if __name__ == '__main__':
     asyncio.run(main())
