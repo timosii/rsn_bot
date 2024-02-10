@@ -1,0 +1,431 @@
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно
+Job "check_posts (trigger: interval[1:00:00], next run at: 2024-01-01 20:46:33 MSK)" raised an exception
+Traceback (most recent call last):
+  File "/home/timosii/.cache/pypoetry/virtualenvs/python-template-BcILUMsC-py3.10/lib/python3.10/site-packages/apscheduler/executors/base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+  File "/home/timosii/rsn_bot/main.py", line 31, in check_posts
+    update_sean = check_new_sean_post()
+  File "/home/timosii/rsn_bot/controller/schedule_tasks.py", line 17, in check_new_sean_post
+    post_list = take_post_list()
+  File "/home/timosii/rsn_bot/model/all_post.py", line 25, in take_post_list
+    login_process()
+  File "/home/timosii/rsn_bot/model/connection.py", line 42, in login_process
+    raise Exception("Ошибка авторизации")
+Exception: Ошибка авторизации
+Job "check_posts (trigger: interval[1:00:00], next run at: 2024-01-01 21:46:33 MSK)" raised an exception
+Traceback (most recent call last):
+  File "/home/timosii/.cache/pypoetry/virtualenvs/python-template-BcILUMsC-py3.10/lib/python3.10/site-packages/apscheduler/executors/base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+  File "/home/timosii/rsn_bot/main.py", line 31, in check_posts
+    update_sean = check_new_sean_post()
+  File "/home/timosii/rsn_bot/controller/schedule_tasks.py", line 17, in check_new_sean_post
+    post_list = take_post_list()
+  File "/home/timosii/rsn_bot/model/all_post.py", line 25, in take_post_list
+    login_process()
+  File "/home/timosii/rsn_bot/model/connection.py", line 42, in login_process
+    raise Exception("Ошибка авторизации")
+Exception: Ошибка авторизации
+Job "check_posts (trigger: interval[1:00:00], next run at: 2024-01-01 22:46:33 MSK)" raised an exception
+Traceback (most recent call last):
+  File "/home/timosii/.cache/pypoetry/virtualenvs/python-template-BcILUMsC-py3.10/lib/python3.10/site-packages/apscheduler/executors/base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+  File "/home/timosii/rsn_bot/main.py", line 31, in check_posts
+    update_sean = check_new_sean_post()
+  File "/home/timosii/rsn_bot/controller/schedule_tasks.py", line 17, in check_new_sean_post
+    post_list = take_post_list()
+  File "/home/timosii/rsn_bot/model/all_post.py", line 25, in take_post_list
+    login_process()
+  File "/home/timosii/rsn_bot/model/connection.py", line 42, in login_process
+    raise Exception("Ошибка авторизации")
+Exception: Ошибка авторизации
+Job "check_posts (trigger: interval[1:00:00], next run at: 2024-01-01 23:46:33 MSK)" raised an exception
+Traceback (most recent call last):
+  File "/home/timosii/.cache/pypoetry/virtualenvs/python-template-BcILUMsC-py3.10/lib/python3.10/site-packages/apscheduler/executors/base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+  File "/home/timosii/rsn_bot/main.py", line 31, in check_posts
+    update_sean = check_new_sean_post()
+  File "/home/timosii/rsn_bot/controller/schedule_tasks.py", line 17, in check_new_sean_post
+    post_list = take_post_list()
+  File "/home/timosii/rsn_bot/model/all_post.py", line 25, in take_post_list
+    login_process()
+  File "/home/timosii/rsn_bot/model/connection.py", line 42, in login_process
+    raise Exception("Ошибка авторизации")
+Exception: Ошибка авторизации
+Job "check_posts (trigger: interval[1:00:00], next run at: 2024-01-02 00:46:33 MSK)" raised an exception
+Traceback (most recent call last):
+  File "/home/timosii/.cache/pypoetry/virtualenvs/python-template-BcILUMsC-py3.10/lib/python3.10/site-packages/apscheduler/executors/base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+  File "/home/timosii/rsn_bot/main.py", line 31, in check_posts
+    update_sean = check_new_sean_post()
+  File "/home/timosii/rsn_bot/controller/schedule_tasks.py", line 17, in check_new_sean_post
+    post_list = take_post_list()
+  File "/home/timosii/rsn_bot/model/all_post.py", line 25, in take_post_list
+    login_process()
+  File "/home/timosii/rsn_bot/model/connection.py", line 42, in login_process
+    raise Exception("Ошибка авторизации")
+Exception: Ошибка авторизации
+Job "check_posts (trigger: interval[1:00:00], next run at: 2024-01-02 01:46:33 MSK)" raised an exception
+Traceback (most recent call last):
+  File "/home/timosii/.cache/pypoetry/virtualenvs/python-template-BcILUMsC-py3.10/lib/python3.10/site-packages/apscheduler/executors/base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+  File "/home/timosii/rsn_bot/main.py", line 31, in check_posts
+    update_sean = check_new_sean_post()
+  File "/home/timosii/rsn_bot/controller/schedule_tasks.py", line 17, in check_new_sean_post
+    post_list = take_post_list()
+  File "/home/timosii/rsn_bot/model/all_post.py", line 25, in take_post_list
+    login_process()
+  File "/home/timosii/rsn_bot/model/connection.py", line 42, in login_process
+    raise Exception("Ошибка авторизации")
+Exception: Ошибка авторизации
+Job "check_posts (trigger: interval[1:00:00], next run at: 2024-01-02 02:46:33 MSK)" raised an exception
+Traceback (most recent call last):
+  File "/home/timosii/.cache/pypoetry/virtualenvs/python-template-BcILUMsC-py3.10/lib/python3.10/site-packages/apscheduler/executors/base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+  File "/home/timosii/rsn_bot/main.py", line 31, in check_posts
+    update_sean = check_new_sean_post()
+  File "/home/timosii/rsn_bot/controller/schedule_tasks.py", line 17, in check_new_sean_post
+    post_list = take_post_list()
+  File "/home/timosii/rsn_bot/model/all_post.py", line 25, in take_post_list
+    login_process()
+  File "/home/timosii/rsn_bot/model/connection.py", line 42, in login_process
+    raise Exception("Ошибка авторизации")
+Exception: Ошибка авторизации
+Job "check_posts (trigger: interval[1:00:00], next run at: 2024-01-02 03:46:33 MSK)" raised an exception
+Traceback (most recent call last):
+  File "/home/timosii/.cache/pypoetry/virtualenvs/python-template-BcILUMsC-py3.10/lib/python3.10/site-packages/apscheduler/executors/base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+  File "/home/timosii/rsn_bot/main.py", line 31, in check_posts
+    update_sean = check_new_sean_post()
+  File "/home/timosii/rsn_bot/controller/schedule_tasks.py", line 17, in check_new_sean_post
+    post_list = take_post_list()
+  File "/home/timosii/rsn_bot/model/all_post.py", line 25, in take_post_list
+    login_process()
+  File "/home/timosii/rsn_bot/model/connection.py", line 42, in login_process
+    raise Exception("Ошибка авторизации")
+Exception: Ошибка авторизации
+Job "check_posts (trigger: interval[1:00:00], next run at: 2024-01-02 04:46:33 MSK)" raised an exception
+Traceback (most recent call last):
+  File "/home/timosii/.cache/pypoetry/virtualenvs/python-template-BcILUMsC-py3.10/lib/python3.10/site-packages/apscheduler/executors/base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+  File "/home/timosii/rsn_bot/main.py", line 31, in check_posts
+    update_sean = check_new_sean_post()
+  File "/home/timosii/rsn_bot/controller/schedule_tasks.py", line 17, in check_new_sean_post
+    post_list = take_post_list()
+  File "/home/timosii/rsn_bot/model/all_post.py", line 25, in take_post_list
+    login_process()
+  File "/home/timosii/rsn_bot/model/connection.py", line 42, in login_process
+    raise Exception("Ошибка авторизации")
+Exception: Ошибка авторизации
+Job "check_posts (trigger: interval[1:00:00], next run at: 2024-01-02 05:46:33 MSK)" raised an exception
+Traceback (most recent call last):
+  File "/home/timosii/.cache/pypoetry/virtualenvs/python-template-BcILUMsC-py3.10/lib/python3.10/site-packages/apscheduler/executors/base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+  File "/home/timosii/rsn_bot/main.py", line 31, in check_posts
+    update_sean = check_new_sean_post()
+  File "/home/timosii/rsn_bot/controller/schedule_tasks.py", line 17, in check_new_sean_post
+    post_list = take_post_list()
+  File "/home/timosii/rsn_bot/model/all_post.py", line 25, in take_post_list
+    login_process()
+  File "/home/timosii/rsn_bot/model/connection.py", line 42, in login_process
+    raise Exception("Ошибка авторизации")
+Exception: Ошибка авторизации
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Произошла ошибка авторизации
+Произошла ошибка авторизации
+Произошла ошибка авторизации
+Произошла ошибка авторизации
+Произошла ошибка авторизации
+Произошла ошибка авторизации
+Произошла ошибка авторизации
+Произошла ошибка авторизации
+Произошла ошибка авторизации
+Произошла ошибка авторизации
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно
+Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 6407206448)
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно
+Авторизация прошла успешно
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно

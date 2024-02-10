@@ -1,0 +1,18 @@
+Job "check_posts (trigger: interval[1:00:00], next run at: 2024-02-10 15:08:45 MSK)" raised an exception
+Traceback (most recent call last):
+  File "/home/timosii/.cache/pypoetry/virtualenvs/python-template-BcILUMsC-py3.10/lib/python3.10/site-packages/apscheduler/executors/base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+  File "/home/timosii/rsn_bot/main.py", line 33, in check_posts
+    current_sean = read_ids()["Sean"]
+  File "/home/timosii/rsn_bot/controller/schedule_tasks.py", line 50, in read_ids
+    sean, len_rus = take_data()
+  File "/home/timosii/rsn_bot/model/database.py", line 27, in take_data
+    ID, SEAN_ID, LEN = all_users[0]
+UnboundLocalError: local variable 'all_users' referenced before assignment
+Received SIGTERM signal
+Авторизация прошла успешно
+Авторизация прошла успешно
+Can't establish connection to database: connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  database "rsn_bot" does not exist
+
+Авторизация прошла успешно
+Авторизация прошла успешно
