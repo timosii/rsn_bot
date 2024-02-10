@@ -42,8 +42,8 @@ async def check_posts(bot: Bot):
             await bot.send_message(MY_ID, sean_message, parse_mode="HTML")
         except exceptions.TelegramBadRequest:
             await bot.send_message(MY_ID, REPLY_TEXT, parse_mode="HTML")
-    else:
-        await bot.send_message(MY_ID, text="Работаю, нового поста от Шона нет", parse_mode="HTML")
+    #else:
+    #    await bot.send_message(MY_ID, text="Работаю, нового поста от Шона нет", parse_mode="HTML")
    
 
     if update_len != current_len and update_len != 0:
@@ -55,8 +55,8 @@ async def check_posts(bot: Bot):
             await bot.send_message(MY_ID, rus_message, parse_mode="HTML")
         except exceptions.TelegramBadRequest:
             await bot.send_message(MY_ID, REPLY_TEXT, parse_mode="HTML")
-    else:
-        await bot.send_message(MY_ID, text="Работаю, обновлений в постах Руса нет", parse_mode="HTML")
+    #else:
+    #    await bot.send_message(MY_ID, text="Работаю, обновлений в постах Руса нет", parse_mode="HTML")
 
     change_ids(update_sean, update_len)
        
