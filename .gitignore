@@ -5,3 +5,4 @@ __pycache__
 replit.nix
 .replit
 .config
+logs.log
