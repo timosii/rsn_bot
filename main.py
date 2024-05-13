@@ -48,8 +48,12 @@ async def check_posts(bot: Bot):
 
     if update_len != current_len and update_len != 0:
         await bot.send_message(RSN_ID, 'Обновление в твоём посте!')
-        rus_message = send_rsn_post(length_replies=5)
-        await bot.send_message(RSN_ID, rus_message, parse_mode="HTML")
+        try:
+            rus_message = send_rsn_post(length_replies=5)
+            await bot.send_message(RSN_ID, rus_message, parse_mode="HTML")
+        except exceptions.TelegramBadRequest:
+            await bot.send_message(RSN_ID, REPLY_TEXT, parse_mode="HTML")
+            
         await bot.send_message(MY_ID, 'Обновление в твоём посте!')
         try:
             await bot.send_message(MY_ID, rus_message, parse_mode="HTML")
